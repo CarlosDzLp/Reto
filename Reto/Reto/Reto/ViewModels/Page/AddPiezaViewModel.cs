@@ -45,17 +45,17 @@ namespace Reto.ViewModels.Page
             {
                 if(string.IsNullOrWhiteSpace(Nombre))
                 {
-                    Toast.Make("Nombre es requerido", CommunityToolkit.Maui.Core.ToastDuration.Long, 16);
+                    await Toast.Make("Nombre es requerido", CommunityToolkit.Maui.Core.ToastDuration.Long, 16).Show();
                     return;
                 }
                 if (Piezas == 0 || Piezas < 0)
                 {
-                    Toast.Make("Las piezas son requeridas", CommunityToolkit.Maui.Core.ToastDuration.Long, 16);
+                    await Toast.Make("Las piezas son requeridas", CommunityToolkit.Maui.Core.ToastDuration.Long, 16).Show();
                     return;
                 }
                 if(Taller == null)
                 {
-                    Toast.Make("No se encuentra el taller", CommunityToolkit.Maui.Core.ToastDuration.Long, 16);
+                    await Toast.Make("No se encuentra el taller", CommunityToolkit.Maui.Core.ToastDuration.Long, 16).Show();
                     return;
                 }
 
@@ -68,14 +68,14 @@ namespace Reto.ViewModels.Page
                 await piezas.SaveCommitAsync();
                 if(pi != null && pi.Id > 0)
                 {
-                    Toast.Make("Se ha registrado la pieza", CommunityToolkit.Maui.Core.ToastDuration.Long, 16);
+                    await Toast.Make("Se ha registrado la pieza", CommunityToolkit.Maui.Core.ToastDuration.Long, 16).Show();
                     Nombre = string.Empty;
                     Piezas = 0;
                     await LoadPiezas();
                 }
                 else
                 {
-                    Toast.Make("No se ha registrado la pieza", CommunityToolkit.Maui.Core.ToastDuration.Long, 16);
+                    await Toast.Make("No se ha registrado la pieza", CommunityToolkit.Maui.Core.ToastDuration.Long, 16).Show();
                 }
             }
             catch(Exception ex)

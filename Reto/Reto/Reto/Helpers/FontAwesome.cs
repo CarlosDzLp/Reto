@@ -8,6 +8,6 @@ namespace Reto.Helpers
 {
     public class FontAwesome
     {
-        
+        public const string Arrow_Bottom = "\uf078";
     }
 }

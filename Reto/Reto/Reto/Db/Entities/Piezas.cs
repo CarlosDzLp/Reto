@@ -13,5 +13,7 @@ namespace Reto.Db.Entities
         [ForeignKey("Taller")]
         public int TallerId { get; set; }
         public Taller Taller { get; set; }
+
+        public List<Refaccion> Refaccion = new();
     }
 }

@@ -17,9 +17,8 @@
                 Text="{Binding Title}"
                 TextColor="{DynamicResource ColorBlue}" />
             <VerticalStackLayout>
-                <ImageButton text></ImageButton>
                 <Button
-                    BackgroundColor="{DynamicResource ColorBlue}"
+                    BackgroundColor="{DynamicResource ColorBlueDark}"
                     Command="{Binding InstalacionCommand}"
                     CornerRadius="0"
                     FontFamily="RobotoBold"
@@ -28,8 +27,8 @@
                     Text="Instalación de Piezas"
                     TextColor="{DynamicResource ColorWhite}" />
                 <Button
-                    BackgroundColor="{DynamicResource ColorWhite}"
-                    BorderColor="{DynamicResource ColorBlue}"
+                    BackgroundColor="{DynamicResource ColorRed}"
+                    BorderColor="{DynamicResource #31111D}"
                     BorderWidth="2"
                     Command="{Binding SolicitudCommand}"
                     CornerRadius="0"
@@ -37,15 +36,15 @@
                     FontSize="30"
                     HeightRequest="200"
                     Text="Solicitud de Piezas"
-                    TextColor="{DynamicResource ColorBlue}" />
+                    TextColor="{DynamicResource ColorWhite}" />
                 <Button
-                    BackgroundColor="{DynamicResource ColorBlue}"
+                    BackgroundColor="{DynamicResource ColorDark}"
                     Command="{Binding AddPiezaCommand}"
                     CornerRadius="0"
                     FontFamily="RobotoBold"
                     FontSize="30"
                     HeightRequest="200"
-                    Text="Nueva Pieza"
+                    Text="Nuevas Refacciones"
                     TextColor="{DynamicResource ColorWhite}" />
             </VerticalStackLayout>
         </VerticalStackLayout>

@@ -7,6 +7,9 @@
     <Color x:Key="ColorBlack">#000000</Color>
     <Color x:Key="ColorBlue">#2B0B98</Color>
     <Color x:Key="ColorWhite">#FFFFFF</Color>
+    <Color x:Key="ColorRed">#B3261E</Color>
+    <Color x:Key="ColorBlueDark">#21005D</Color>
+    <Color x:Key="ColorDark">#31111D</Color>
     <!--<Color x:Key="PrimaryDark">#ac99ea</Color>
     <Color x:Key="PrimaryDarkText">#242424</Color>
     <Color x:Key="Secondary">#DFD8F7</Color>

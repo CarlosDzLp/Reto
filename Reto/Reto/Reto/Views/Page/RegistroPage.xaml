@@ -3,14 +3,149 @@
     x:Class="Reto.Views.Page.RegistroPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:convert="clr-namespace:Reto.Converts"
     Title="{Binding Title}"
     BackgroundColor="{DynamicResource ColorWhite}"
     NavigationPage.HasNavigationBar="True">
-    <VerticalStackLayout>
-        <Label
-            HorizontalOptions="Center"
-            Text="Registro"
-            TextColor="{DynamicResource ColorBlack}"
-            VerticalOptions="Center" />
-    </VerticalStackLayout>
+    <ContentPage.Resources>
+        <convert:ImagePathConvert x:Key="imgConvert" />
+    </ContentPage.Resources>
+    <Grid RowDefinitions="Auto,*">
+        <VerticalStackLayout Grid.Row="0">
+            <Button
+                Margin="10"
+                BackgroundColor="{DynamicResource ColorBlue}"
+                Command="{Binding AddRegistroCommand}"
+                CornerRadius="0"
+                FontFamily="RobotoRegular"
+                FontSize="14"
+                HeightRequest="50"
+                Text="Nueva Instalación"
+                TextColor="{DynamicResource ColorWhite}" />
+        </VerticalStackLayout>
+        <CollectionView
+            Grid.Row="1"
+            ItemSizingStrategy="MeasureAllItems"
+            ItemsSource="{Binding ListRefaccion}"
+            SelectionMode="Single"
+            VerticalScrollBarVisibility="Never">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout
+                    Orientation="Vertical"
+                    Span="1"
+                    VerticalItemSpacing="5" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border
+                        Margin="10,0"
+                        Padding="16,8"
+                        Background="{DynamicResource ColorWhite}"
+                        Stroke="{DynamicResource ColorBlack}"
+                        StrokeShape="RoundRectangle 0,0,0,0"
+                        StrokeThickness="2">
+                        <Grid RowDefinitions="Auto,*">
+                            <VerticalStackLayout Grid.Row="0">
+                                <Image
+                                    Aspect="AspectFill"
+                                    HeightRequest="200"
+                                    Source="{Binding Imagen, Converter={StaticResource imgConvert}}" />
+                            </VerticalStackLayout>
+                            <Grid
+                                Grid.Row="1"
+                                ColumnDefinitions="*,*"
+                                RowDefinitions="Auto,Auto,Auto,Auto">
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    FontFamily="RobotoBlack"
+                                    FontSize="16"
+                                    Text="{Binding Id}"
+                                    TextColor="{DynamicResource ColorBlack}" />
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    FontFamily="RobotoRegular"
+                                    FontSize="16"
+                                    Text="{Binding Solicitud, StringFormat='Solicitud: {0}'}"
+                                    TextColor="{DynamicResource ColorBlack}" />
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    FontFamily="RobotoRegular"
+                                    FontSize="16"
+                                    Text="{Binding NombreTaller, StringFormat='Taller: {0}'}"
+                                    TextColor="{DynamicResource ColorBlack}" />
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    FontFamily="RobotoRegular"
+                                    FontSize="16"
+                                    Text="{Binding NombrePieza, StringFormat='Pieza: {0}'}"
+                                    TextColor="{DynamicResource ColorBlack}" />
+                                <Label
+                                    Grid.Row="2"
+                                    Grid.Column="0"
+                                    FontFamily="RobotoRegular"
+                                    FontSize="16"
+                                    Text="{Binding Cantidad, StringFormat='Cant. Pieza: {0}'}"
+                                    TextColor="{DynamicResource ColorBlack}" />
+                                <Label
+                                    Grid.Row="2"
+                                    Grid.Column="1"
+                                    FontFamily="RobotoRegular"
+                                    FontSize="16"
+                                    Text="{Binding Estatus, StringFormat='Estatus: {0}'}"
+                                    TextColor="{DynamicResource ColorBlack}" />
+                                <Label
+                                    Grid.Row="3"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    FontFamily="RobotoRegular"
+                                    FontSize="16"
+                                    Text="{Binding FechaInstalacion, StringFormat='Fecha Instalación: {0:dd/MM/yyyy}'}"
+                                    TextColor="{DynamicResource ColorBlack}" />
+                            </Grid>
+                        </Grid>
+                        <!--<VerticalStackLayout>
+                        <Grid
+                        BackgroundColor="{DynamicResource ColorWhite}"
+                        ColumnDefinitions="*,*"
+                        ColumnSpacing="20">
+                        <Label
+                        Grid.Column="0"
+                        FontFamily="RobotoBlack"
+                        FontSize="16"
+                        Text="{Binding Id, StringFormat='Id: {0}'}"
+                        TextColor="Black" />
+                        <Label
+                        Grid.Column="1"
+                        FontFamily="RobotoRegular"
+                        FontSize="16"
+                        Text="{Binding Nombre, StringFormat='Pieza: {0}'}"
+                        TextColor="Black" />
+                        </Grid>
+                        <Grid
+                        BackgroundColor="{DynamicResource ColorWhite}"
+                        ColumnDefinitions="*,*"
+                        ColumnSpacing="20">
+                        <Label
+                        Grid.Column="0"
+                        FontFamily="RobotoRegular"
+                        FontSize="16"
+                        Text="{Binding Cantidad, StringFormat='Cantidaad: {0}'}"
+                        TextColor="Black" />
+                        <Label
+                        Grid.Column="1"
+                        FontFamily="RobotoRegular"
+                        FontSize="16"
+                        Text="{Binding TallerNombre, StringFormat='Taller: {0}'}"
+                        TextColor="Black" />
+                        </Grid>
+                        </VerticalStackLayout>-->
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
 </ContentPage>

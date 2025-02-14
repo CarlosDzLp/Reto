@@ -39,7 +39,9 @@ namespace Reto.ViewModels
                     {
                         Id = 1,
                         Nombre = "Juan Mecánico",
-                        Icon = "taller1.png"
+                        Icon = "taller1.png",
+                        Latitud = 16.7408239,
+                        Longitud = -93.1044611
                     });
                     await taller.SaveCommitAsync();
                 }
@@ -50,7 +52,9 @@ namespace Reto.ViewModels
                     {
                         Id = 2,
                         Nombre = "La Bendición",
-                        Icon = "taller2.png"
+                        Icon = "taller2.png",
+                        Latitud = 16.738954,
+                        Longitud = -93.1023368
                     });
                     await taller.SaveCommitAsync();
                 }

@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Logging;
 using Reto.Db;
 using Reto.Db.Repository;
-using Reto.Helpers;
 using Reto.Service;
 using Reto.ViewModels;
 using Reto.ViewModels.Page;
@@ -50,16 +49,18 @@ public static class MauiProgramExtensions
         mauiAppBuilder.Services.AddTransient<RegistroPage>();
         mauiAppBuilder.Services.AddTransient<SolicitudPage>();
         mauiAppBuilder.Services.AddTransient<AddPiezaPage>();
+        mauiAppBuilder.Services.AddTransient<AddRegistroPage>();
         return mauiAppBuilder;
     }
 
     public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder mauiAppBuilder)
     {
-        mauiAppBuilder.Services.AddSingleton<PrincipalViewModel>();
-        mauiAppBuilder.Services.AddSingleton<TallerViewModel>();
-        mauiAppBuilder.Services.AddSingleton<RegistroViewModel>();
-        mauiAppBuilder.Services.AddSingleton<SolicitudViewModel>();
-        mauiAppBuilder.Services.AddSingleton<AddPiezaViewModel>();
+        mauiAppBuilder.Services.AddTransient<PrincipalViewModel>();
+        mauiAppBuilder.Services.AddTransient<TallerViewModel>();
+        mauiAppBuilder.Services.AddTransient<RegistroViewModel>();
+        mauiAppBuilder.Services.AddTransient<SolicitudViewModel>();
+        mauiAppBuilder.Services.AddTransient<AddPiezaViewModel>();
+        mauiAppBuilder.Services.AddTransient<AddRegistroViewModel>();
         return mauiAppBuilder;
     }
 
