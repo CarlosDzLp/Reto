@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Reto.Views.Page.TallerPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
+    Title="{Binding Title}"
+    BackgroundColor="{DynamicResource ColorWhite}"
+    NavigationPage.HasNavigationBar="True">
+    <ScrollView VerticalScrollBarVisibility="Never">
+        <VerticalStackLayout>
+            <Label
+                Margin="0,0,0,20"
+                FontFamily="RobotoBold"
+                FontSize="30"
+                HorizontalOptions="Center"
+                Text="{Binding Title}"
+                TextColor="{DynamicResource ColorBlue}" />
+            <VerticalStackLayout>
+                <ImageButton text></ImageButton>
+                <Button
+                    BackgroundColor="{DynamicResource ColorBlue}"
+                    Command="{Binding InstalacionCommand}"
+                    CornerRadius="0"
+                    FontFamily="RobotoBold"
+                    FontSize="30"
+                    HeightRequest="200"
+                    Text="Instalación de Piezas"
+                    TextColor="{DynamicResource ColorWhite}" />
+                <Button
+                    BackgroundColor="{DynamicResource ColorWhite}"
+                    BorderColor="{DynamicResource ColorBlue}"
+                    BorderWidth="2"
+                    Command="{Binding SolicitudCommand}"
+                    CornerRadius="0"
+                    FontFamily="RobotoBold"
+                    FontSize="30"
+                    HeightRequest="200"
+                    Text="Solicitud de Piezas"
+                    TextColor="{DynamicResource ColorBlue}" />
+                <Button
+                    BackgroundColor="{DynamicResource ColorBlue}"
+                    Command="{Binding AddPiezaCommand}"
+                    CornerRadius="0"
+                    FontFamily="RobotoBold"
+                    FontSize="30"
+                    HeightRequest="200"
+                    Text="Nueva Pieza"
+                    TextColor="{DynamicResource ColorWhite}" />
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+
+    </ScrollView>
+</ContentPage>

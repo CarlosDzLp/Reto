@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Reto.Views.Page.AddPiezaPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="{Binding Title}"
+    BackgroundColor="{DynamicResource ColorWhite}"
+    NavigationPage.HasNavigationBar="True">
+    <Grid RowDefinitions="Auto,*">
+        <VerticalStackLayout Grid.Row="0" Padding="10">
+            <Entry
+                BackgroundColor="Red"
+                FontFamily="RobotoRegular"
+                FontSize="16"
+                Placeholder="Nombre de la pieza"
+                PlaceholderColor="DimGray"
+                Text="{Binding Nombre}"
+                TextColor="{DynamicResource ColorBlack}" />
+            <Entry
+                FontFamily="RobotoRegular"
+                FontSize="16"
+                Keyboard="Numeric"
+                Placeholder="Cantidad"
+                PlaceholderColor="Gray"
+                Text="{Binding Piezas}"
+                TextColor="{DynamicResource ColorBlack}" />
+            <Button
+                BackgroundColor="{DynamicResource ColorBlue}"
+                Command="{Binding SaveCommand}"
+                FontFamily="RobotoRegular"
+                HeightRequest="50"
+                Text="Guardar"
+                TextColor="{DynamicResource ColorWhite}" />
+        </VerticalStackLayout>
+        <CollectionView
+            Grid.Row="1"
+            ItemSizingStrategy="MeasureAllItems"
+            ItemsSource="{Binding ListPiezas}"
+            SelectionMode="Single"
+            VerticalScrollBarVisibility="Never">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout
+                    Orientation="Vertical"
+                    Span="1"
+                    VerticalItemSpacing="5" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border
+                        Margin="10,0"
+                        Padding="16,8"
+                        Background="{DynamicResource ColorWhite}"
+                        Stroke="{DynamicResource ColorBlack}"
+                        StrokeShape="RoundRectangle 0,0,0,0"
+                        StrokeThickness="2">
+                        <VerticalStackLayout>
+                            <Grid
+                                BackgroundColor="{DynamicResource ColorWhite}"
+                                ColumnDefinitions="*,*"
+                                ColumnSpacing="20">
+                                <Label
+                                    Grid.Column="0"
+                                    FontFamily="RobotoBlack"
+                                    FontSize="16"
+                                    Text="{Binding Id, StringFormat='Id: {0}'}"
+                                    TextColor="Black" />
+                                <Label
+                                    Grid.Column="1"
+                                    FontFamily="RobotoRegular"
+                                    FontSize="16"
+                                    Text="{Binding Nombre, StringFormat='Pieza: {0}'}"
+                                    TextColor="Black" />
+                            </Grid>
+                            <Grid
+                                BackgroundColor="{DynamicResource ColorWhite}"
+                                ColumnDefinitions="*,*"
+                                ColumnSpacing="20">
+                                <Label
+                                    Grid.Column="0"
+                                    FontFamily="RobotoRegular"
+                                    FontSize="16"
+                                    Text="{Binding Cantidad, StringFormat='Cantidaad: {0}'}"
+                                    TextColor="Black" />
+                                <Label
+                                    Grid.Column="1"
+                                    FontFamily="RobotoRegular"
+                                    FontSize="16"
+                                    Text="{Binding TallerNombre, StringFormat='Taller: {0}'}"
+                                    TextColor="Black" />
+                            </Grid>
+                        </VerticalStackLayout>
+
+                    </Border>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
