@@ -130,7 +130,7 @@ namespace Reto.ViewModels.Page
                     return;
                 }
                 var date = DateTime.UtcNow;
-                if(DateInstalacion < date)
+                if(date < DateInstalacion)
                 {
                     await Toast.Make("La fecha debe ser mayor o igual a la actual", duration, fontSize).Show();
                     return;

@@ -25,5 +25,6 @@ namespace Reto.Db
         public DbSet<Db.Entities.Taller> Taller { get; set; }
         public DbSet<Db.Entities.Piezas> Piezas { get; set; }
         public DbSet<Db.Entities.Refaccion> Refaccion { get; set; }
+        public DbSet<Db.Entities.SolicitudPieza> SolicitudPieza { get; set; }
     }
 }

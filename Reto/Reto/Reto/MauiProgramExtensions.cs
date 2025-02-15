@@ -50,6 +50,8 @@ public static class MauiProgramExtensions
         mauiAppBuilder.Services.AddTransient<SolicitudPage>();
         mauiAppBuilder.Services.AddTransient<AddPiezaPage>();
         mauiAppBuilder.Services.AddTransient<AddRegistroPage>();
+        mauiAppBuilder.Services.AddTransient<AddSolicitudPage>();
+        mauiAppBuilder.Services.AddTransient<DetalleSolicitudEnviaPage>();
         return mauiAppBuilder;
     }
 
@@ -61,6 +63,8 @@ public static class MauiProgramExtensions
         mauiAppBuilder.Services.AddTransient<SolicitudViewModel>();
         mauiAppBuilder.Services.AddTransient<AddPiezaViewModel>();
         mauiAppBuilder.Services.AddTransient<AddRegistroViewModel>();
+        mauiAppBuilder.Services.AddTransient<AddSolicitudViewModel>();
+        mauiAppBuilder.Services.AddTransient<DetalleSolicitudEnviaViewModel>();
         return mauiAppBuilder;
     }
 

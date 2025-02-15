@@ -107,42 +107,6 @@
                                     TextColor="{DynamicResource ColorBlack}" />
                             </Grid>
                         </Grid>
-                        <!--<VerticalStackLayout>
-                        <Grid
-                        BackgroundColor="{DynamicResource ColorWhite}"
-                        ColumnDefinitions="*,*"
-                        ColumnSpacing="20">
-                        <Label
-                        Grid.Column="0"
-                        FontFamily="RobotoBlack"
-                        FontSize="16"
-                        Text="{Binding Id, StringFormat='Id: {0}'}"
-                        TextColor="Black" />
-                        <Label
-                        Grid.Column="1"
-                        FontFamily="RobotoRegular"
-                        FontSize="16"
-                        Text="{Binding Nombre, StringFormat='Pieza: {0}'}"
-                        TextColor="Black" />
-                        </Grid>
-                        <Grid
-                        BackgroundColor="{DynamicResource ColorWhite}"
-                        ColumnDefinitions="*,*"
-                        ColumnSpacing="20">
-                        <Label
-                        Grid.Column="0"
-                        FontFamily="RobotoRegular"
-                        FontSize="16"
-                        Text="{Binding Cantidad, StringFormat='Cantidaad: {0}'}"
-                        TextColor="Black" />
-                        <Label
-                        Grid.Column="1"
-                        FontFamily="RobotoRegular"
-                        FontSize="16"
-                        Text="{Binding TallerNombre, StringFormat='Taller: {0}'}"
-                        TextColor="Black" />
-                        </Grid>
-                        </VerticalStackLayout>-->
                     </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

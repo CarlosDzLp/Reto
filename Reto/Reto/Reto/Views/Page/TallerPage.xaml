@@ -46,6 +46,16 @@
                     HeightRequest="200"
                     Text="Nuevas Refacciones"
                     TextColor="{DynamicResource ColorWhite}" />
+                <Button
+                    BackgroundColor="{DynamicResource ColorBlueDark}"
+                    Command="{Binding SendPiezaCommand}"
+                    CornerRadius="0"
+                    FontFamily="RobotoBold"
+                    FontSize="30"
+                    HeightRequest="200"
+                    IsVisible="{Binding IsVisibleSolicitud}"
+                    Text="Piezas por enviar"
+                    TextColor="{DynamicResource ColorWhite}" />
             </VerticalStackLayout>
         </VerticalStackLayout>
 

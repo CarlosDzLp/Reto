@@ -1,25 +1,48 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="Reto.Views.Page.AddRegistroPage"
+    x:Class="Reto.Views.Page.AddSolicitudPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:Reto.Controls"
-    xmlns:convert="clr-namespace:Reto.Converts"
     xmlns:font="clr-namespace:Reto.Helpers"
-    Title="Nueva Instalación"
+    Title="Nueva Solicitud"
     BackgroundColor="{DynamicResource ColorWhite}">
-    <ContentPage.Resources>
-        <convert:ImageConvert x:Key="imgConvert" />
-    </ContentPage.Resources>
-    <ScrollView>
-        <VerticalStackLayout Padding="10,20" Spacing="20">
+    <ScrollView VerticalScrollBarVisibility="Never">
+        <VerticalStackLayout Padding="20" Spacing="20">
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+                <Label
+                    FontFamily="RobotoRegular"
+                    FontSize="20"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding Title}"
+                    TextColor="{DynamicResource ColorBlack}"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center" />
+                <Image
+                    Grid.Column="1"
+                    HeightRequest="35"
+                    WidthRequest="35">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OpenMapTallerSolicitudCommand}" NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>
+                    <Image.Source>
+                        <FontImageSource
+                            FontFamily="FontAwesomeProLight"
+                            Glyph="{x:Static font:FontAwesome.Map}"
+                            Size="35"
+                            Color="{DynamicResource ColorBlack}" />
+                    </Image.Source>
+                </Image>
+            </HorizontalStackLayout>
+
             <VerticalStackLayout>
                 <Label
                     FontFamily="RobotoRegular"
                     FontSize="16"
                     HorizontalOptions="Start"
                     HorizontalTextAlignment="Start"
-                    Text="Solicitud"
+                    Text="VIN Vehiculo"
                     TextColor="{DynamicResource ColorBlack}" />
                 <Border
                     Background="{DynamicResource ColorWhite}"
@@ -29,9 +52,31 @@
                     <Entry
                         FontFamily="RobotoRegular"
                         FontSize="16"
-                        Placeholder="Solicitud"
+                        Placeholder="Vin"
                         PlaceholderColor="DimGray"
-                        Text="{Binding Solicitud}"
+                        Text="{Binding Vin}"
+                        TextColor="{DynamicResource ColorBlack}" />
+                </Border>
+            </VerticalStackLayout>
+            <VerticalStackLayout>
+                <Label
+                    FontFamily="RobotoRegular"
+                    FontSize="16"
+                    HorizontalOptions="Start"
+                    HorizontalTextAlignment="Start"
+                    Text="Mecánico"
+                    TextColor="{DynamicResource ColorBlack}" />
+                <Border
+                    Background="{DynamicResource ColorWhite}"
+                    Stroke="{DynamicResource ColorBlue}"
+                    StrokeShape="RoundRectangle 0,0,0,0"
+                    StrokeThickness="1">
+                    <Entry
+                        FontFamily="RobotoRegular"
+                        FontSize="16"
+                        Placeholder="Mecánico"
+                        PlaceholderColor="DimGray"
+                        Text="{Binding Mecanico}"
                         TextColor="{DynamicResource ColorBlack}" />
                 </Border>
             </VerticalStackLayout>
@@ -56,7 +101,7 @@
                             FontFamily="RobotoMedium"
                             FontSize="14"
                             ItemDisplayBinding="{Binding Nombre}"
-                            ItemsSource="{Binding ListPieza}"
+                            ItemsSource="{Binding ListPiezas}"
                             SelectedIndexChanged="Picker_SelectedIndexChanged"
                             TextColor="{DynamicResource ColorBlack}"
                             TitleColor="{DynamicResource ColorBlack}" />
@@ -73,53 +118,50 @@
                             </Image.Source>
                         </Image>
                     </Grid>
-
                 </Border>
                 <Label
                     FontFamily="RobotoRegular"
-                    FontSize="12"
-                    HorizontalOptions="Start"
-                    HorizontalTextAlignment="Start"
-                    Text="{Binding ErrorPiezas}"
-                    TextColor="{DynamicResource ColorRed}" />
+                    FontSize="26"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding TallerNombre}"
+                    TextColor="{DynamicResource ColorBlack}" />
                 <controls:ToggledButtonView
-                    HeightRequest="40"
-                    HorizontalOptions="Start"
+                    Margin="0,10"
+                    HeightRequest="50"
                     IsVisible="True"
-                    Maximum="{Binding MaximusPiezas}"
+                    Maximum="{Binding PiezasMaxima}"
                     Minimum="0"
                     Step="1"
-                    VerticalOptions="Center"
-                    WidthRequest="200"
                     Value="{Binding Cantidad}" />
             </VerticalStackLayout>
-
-            <Label
-                FontFamily="RobotoRegular"
-                FontSize="30"
-                HorizontalOptions="Center"
-                HorizontalTextAlignment="Center"
-                Text="{Binding Taller.Nombre, StringFormat='Taller: {0}'}"
-                TextColor="{DynamicResource ColorBlack}" />
-            <controls:StaticMap
-                Aspect="AspectFill"
-                HeightRequest="250"
-                HorizontalOptions="FillAndExpand"
-                IsVisible="true"
-                Pins="{Binding Pins}"
-                VerticalOptions="FillAndExpand"
-                Zoom="16">
-                <controls:StaticMap.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding OpenGoogleMapsCommand}" NumberOfTapsRequired="1" />
-                </controls:StaticMap.GestureRecognizers>
-            </controls:StaticMap>
+            <VerticalStackLayout IsVisible="{Binding IsVisibleMap}">
+                <Label
+                    FontFamily="RobotoRegular"
+                    FontSize="16"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    Text="Tap para abrir el mapa"
+                    TextColor="{DynamicResource ColorBlack}" />
+                <controls:StaticMap
+                    Aspect="AspectFill"
+                    HeightRequest="250"
+                    HorizontalOptions="FillAndExpand"
+                    Pins="{Binding Pins}"
+                    VerticalOptions="FillAndExpand"
+                    Zoom="16">
+                    <controls:StaticMap.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OpenGoogleMapsCommand}" NumberOfTapsRequired="1" />
+                    </controls:StaticMap.GestureRecognizers>
+                </controls:StaticMap>
+            </VerticalStackLayout>
             <VerticalStackLayout>
                 <Label
                     FontFamily="RobotoRegular"
                     FontSize="16"
                     HorizontalOptions="Start"
                     HorizontalTextAlignment="Start"
-                    Text="Fecha instalación"
+                    Text="Fecha Solicitud"
                     TextColor="{DynamicResource ColorBlack}" />
                 <Border
                     Background="{DynamicResource ColorWhite}"
@@ -130,10 +172,10 @@
                         <DatePicker
                             Grid.Column="0"
                             Grid.ColumnSpan="2"
-                            Date="{Binding DateInstalacion}"
+                            Date="{Binding DateSolicitud}"
                             FontFamily="RobotoMedium"
                             FontSize="16"
-                            MinimumDate="{Binding DateInstalacion}"
+                            MinimumDate="{Binding DateSolicitud}"
                             TextColor="{DynamicResource ColorBlack}" />
                         <Image
                             Grid.Column="1"
@@ -150,40 +192,9 @@
                     </Grid>
                 </Border>
             </VerticalStackLayout>
-            <VerticalStackLayout>
-                <Label
-                    FontFamily="RobotoRegular"
-                    FontSize="16"
-                    HorizontalOptions="Start"
-                    HorizontalTextAlignment="Start"
-                    Text="Estatus"
-                    TextColor="{DynamicResource ColorBlack}" />
-                <Border
-                    Background="{DynamicResource ColorWhite}"
-                    Stroke="{DynamicResource ColorBlue}"
-                    StrokeShape="RoundRectangle 0,0,0,0"
-                    StrokeThickness="1">
-                    <Entry
-                        FontFamily="RobotoRegular"
-                        FontSize="16"
-                        IsReadOnly="True"
-                        Placeholder="Solicitud"
-                        PlaceholderColor="DimGray"
-                        Text="Instalado"
-                        TextColor="{DynamicResource ColorBlack}" />
-                </Border>
-            </VerticalStackLayout>
-            <Image
-                HeightRequest="200"
-                Source="{Binding Image, Converter={StaticResource imgConvert}}"
-                WidthRequest="200">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding AddImageCommand}" NumberOfTapsRequired="1" />
-                </Image.GestureRecognizers>
-            </Image>
             <Button
                 BackgroundColor="{DynamicResource ColorBlue}"
-                Command="{Binding SaveCommand}"
+                Command="{Binding SaveSolicitudCommand}"
                 FontFamily="RobotoBold"
                 FontSize="16"
                 HeightRequest="70"
