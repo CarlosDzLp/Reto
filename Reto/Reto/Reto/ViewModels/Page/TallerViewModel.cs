@@ -52,7 +52,7 @@ namespace Reto.ViewModels.Page
             {
                 popup = new SolicitudPiezasPopup(ListSolicitudPieza);
                 popup.SelectionChanged += Popup_SelectionChanged;
-                await App.Current.MainPage.ShowPopupAsync(popup, CancellationToken.None);
+                await App.Current.MainPage.Navigation.PushAsync(popup);
             }
             catch(Exception ex)
             {
@@ -130,7 +130,7 @@ namespace Reto.ViewModels.Page
             {
                 ListSolicitudPieza = new List<SolicitudPiezaModel>();
                 IsVisibleSolicitud = false;
-                var result = await solicitudPiezas.GetAllAsync(c => c.TallerSolicitadoId == Taller.Id && c.EstatusSolicitud != nameof(EstatusSolicitud.Recibido), include: query => query.Include(p => p.Pieza).Include(t => t.TallerSolicita));
+                var result = await solicitudPiezas.GetAllAsync(c => c.TallerSolicitadoId == Taller.Id, include: query => query.Include(p => p.Pieza).Include(t => t.TallerSolicita));
                 if(result != null && result.Count() > 0)
                 {
                     IsVisibleSolicitud = true;
@@ -142,7 +142,8 @@ namespace Reto.ViewModels.Page
                         Id = item.Id,
                         Pieza = item.Pieza.Nombre,
                         Mecanico = item.Mecanico,
-                        TallerSolicitado = item.TallerSolicita.Nombre
+                        TallerSolicitado = item.TallerSolicita.Nombre,
+                        EstatusSolicitud = item.EstatusSolicitud,
                     });
                 }
             }

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Reto.Views.Page.Popup.EnvioProcesadoPopup"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Reto.Controls"
+    xmlns:convert="clr-namespace:Reto.Converts"
+    xmlns:font="clr-namespace:Reto.Helpers"
+    BackgroundColor="{DynamicResource ColorWhite}"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <convert:ImageConvert x:Key="imgConvert" />
+    </ContentPage.Resources>
+    <ScrollView VerticalScrollBarVisibility="Never">
+        <VerticalStackLayout Padding="10,20" Spacing="20">
+            <Image
+                HeightRequest="45"
+                HorizontalOptions="End"
+                WidthRequest="45">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Tapped" />
+                </Image.GestureRecognizers>
+                <Image.Source>
+                    <FontImageSource
+                        FontFamily="FontAwesomeProSolid"
+                        Glyph="{x:Static font:FontAwesome.Close}"
+                        Size="45"
+                        Color="{DynamicResource ColorBlack}" />
+                </Image.Source>
+            </Image>
+            <VerticalStackLayout Spacing="20">
+                <VerticalStackLayout>
+                    <Label
+                        FontFamily="RobotoRegular"
+                        FontSize="16"
+                        HorizontalOptions="Start"
+                        HorizontalTextAlignment="Start"
+                        Text="Solicitud"
+                        TextColor="{DynamicResource ColorBlack}" />
+                    <Border
+                        Background="{DynamicResource ColorWhite}"
+                        Stroke="{DynamicResource ColorBlue}"
+                        StrokeShape="RoundRectangle 0,0,0,0"
+                        StrokeThickness="1">
+                        <Entry
+                            FontFamily="RobotoRegular"
+                            FontSize="16"
+                            Placeholder="Solicitud"
+                            PlaceholderColor="DimGray"
+                            Text="{Binding Solicitud}"
+                            TextColor="{DynamicResource ColorBlack}" />
+                    </Border>
+                </VerticalStackLayout>
+                <VerticalStackLayout>
+                    <Label
+                        FontFamily="RobotoRegular"
+                        FontSize="16"
+                        HorizontalOptions="Start"
+                        HorizontalTextAlignment="Start"
+                        Text="Mecánico"
+                        TextColor="{DynamicResource ColorBlack}" />
+                    <Border
+                        Background="{DynamicResource ColorWhite}"
+                        Stroke="{DynamicResource ColorBlue}"
+                        StrokeShape="RoundRectangle 0,0,0,0"
+                        StrokeThickness="1">
+                        <Entry
+                            FontFamily="RobotoRegular"
+                            FontSize="16"
+                            Placeholder="Mecánico"
+                            PlaceholderColor="DimGray"
+                            Text="{Binding Mecanico}"
+                            TextColor="{DynamicResource ColorBlack}" />
+                    </Border>
+                </VerticalStackLayout>
+                <Label
+                    FontFamily="RobotoRegular"
+                    FontSize="20"
+                    HorizontalOptions="Start"
+                    HorizontalTextAlignment="Start"
+                    Text="{Binding TallerEnvia, StringFormat='Taller Envia: {0}'}"
+                    TextColor="{DynamicResource ColorBlack}"
+                    VerticalOptions="Start"
+                    VerticalTextAlignment="Start" />
+                <controls:StaticMap
+                    Aspect="AspectFill"
+                    HeightRequest="250"
+                    HorizontalOptions="FillAndExpand"
+                    IsVisible="true"
+                    Pins="{Binding Pin}"
+                    VerticalOptions="FillAndExpand"
+                    Zoom="16">
+                    <controls:StaticMap.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OpenGoogleMapsCommand}" NumberOfTapsRequired="1" />
+                    </controls:StaticMap.GestureRecognizers>
+                </controls:StaticMap>
+                <VerticalStackLayout>
+                    <Label
+                        FontFamily="RobotoRegular"
+                        FontSize="16"
+                        HorizontalOptions="Start"
+                        HorizontalTextAlignment="Start"
+                        Text="Fecha Envio"
+                        TextColor="{DynamicResource ColorBlack}" />
+                    <Border
+                        Background="{DynamicResource ColorWhite}"
+                        Stroke="{DynamicResource ColorBlue}"
+                        StrokeShape="RoundRectangle 0,0,0,0"
+                        StrokeThickness="1">
+                        <Grid Padding="10,0" ColumnDefinitions="*,Auto">
+                            <DatePicker
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                Date="{Binding DateEnvio}"
+                                FontFamily="RobotoMedium"
+                                FontSize="16"
+                                MinimumDate="{Binding DateEnvio}"
+                                TextColor="{DynamicResource ColorBlack}" />
+                            <Image
+                                Grid.Column="1"
+                                HeightRequest="25"
+                                WidthRequest="25">
+                                <Image.Source>
+                                    <FontImageSource
+                                        FontFamily="FontAwesomeProSolid"
+                                        Glyph="{x:Static font:FontAwesome.Arrow_Bottom}"
+                                        Size="25"
+                                        Color="{DynamicResource ColorBlack}" />
+                                </Image.Source>
+                            </Image>
+                        </Grid>
+                    </Border>
+                </VerticalStackLayout>
+                <Label
+                    Padding="10,5"
+                    BackgroundColor="#0000ff"
+                    FontFamily="RobotoRegular"
+                    FontSize="20"
+                    HorizontalOptions="Start"
+                    HorizontalTextAlignment="Start"
+                    Text="Estatus: Enviado"
+                    TextColor="{DynamicResource ColorWhite}"
+                    VerticalOptions="Start"
+                    VerticalTextAlignment="Start" />
+                <Image
+                    HeightRequest="200"
+                    Source="{Binding Image, Converter={StaticResource imgConvert}}"
+                    WidthRequest="200">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding AddImageCommand}" NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Button
+                    BackgroundColor="{DynamicResource ColorBlue}"
+                    Command="{Binding SaveCommand}"
+                    FontFamily="RobotoRegular"
+                    HeightRequest="60"
+                    Text="Guardar"
+                    TextColor="{DynamicResource ColorWhite}" />
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

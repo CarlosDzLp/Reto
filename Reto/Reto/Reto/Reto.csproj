@@ -52,6 +52,9 @@
 	  <MauiXaml Update="Views\Page\DetalleSolicitudEnviaPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Page\Popup\EnvioProcesadoPopup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Page\Popup\SolicitudPiezasPopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

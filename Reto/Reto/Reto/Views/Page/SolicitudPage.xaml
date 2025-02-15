@@ -28,9 +28,10 @@
             HorizontalOptions="FillAndExpand"
             VerticalOptions="Fill">
             <CollectionView
+                x:Name="collectionSolicitud"
                 ItemSizingStrategy="MeasureAllItems"
                 ItemsSource="{Binding ListSolicitudPieza}"
-                SelectionMode="Single"
+                SelectionMode="None"
                 VerticalScrollBarVisibility="Never">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout
@@ -100,19 +101,32 @@
                                         Text="{Binding FechaSolicitud, StringFormat='Fecha Solicitud: {0:dd/MM/yyyy}'}"
                                         TextColor="{DynamicResource ColorBlack}" />
                                 </Grid>
-                                <Label
-                                    Grid.Row="0"
-                                    Grid.Column="1"
-                                    Padding="10,5"
-                                    BackgroundColor="{Binding EstatusSolicitud, Converter={StaticResource colorConvert}}"
-                                    FontFamily="RobotoRegular"
-                                    FontSize="16"
-                                    HorizontalOptions="Start"
-                                    HorizontalTextAlignment="Start"
-                                    Text="{Binding EstatusSolicitud}"
-                                    TextColor="{DynamicResource ColorWhite}"
-                                    VerticalOptions="Start"
-                                    VerticalTextAlignment="Start" />
+                                <Grid ColumnDefinitions="*,Auto">
+                                    <Label
+                                        Grid.Column="0"
+                                        Padding="10,5"
+                                        BackgroundColor="{Binding EstatusSolicitud, Converter={StaticResource colorConvert}}"
+                                        FontFamily="RobotoRegular"
+                                        FontSize="16"
+                                        HorizontalOptions="Start"
+                                        HorizontalTextAlignment="Start"
+                                        Text="{Binding EstatusSolicitud, StringFormat='Estatus:{0}'}"
+                                        TextColor="{DynamicResource ColorWhite}"
+                                        VerticalOptions="Start"
+                                        VerticalTextAlignment="Start" />
+                                    <Button
+                                        Grid.Column="1"
+                                        BackgroundColor="{DynamicResource ColorBlue}"
+                                        Command="{Binding Path=BindingContext.RecibidoCommand, Source={Reference collectionSolicitud}}"
+                                        CommandParameter="{Binding .}"
+                                        CornerRadius="0"
+                                        FontFamily="RobotoMedium"
+                                        FontSize="12"
+                                        HeightRequest="40"
+                                        IsVisible="{Binding IsVisibleBtn}"
+                                        Text="Recibir"
+                                        TextColor="{DynamicResource ColorWhite}" />
+                                </Grid>
                             </VerticalStackLayout>
                         </Border>
                     </DataTemplate>

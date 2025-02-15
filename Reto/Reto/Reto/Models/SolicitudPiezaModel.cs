@@ -10,5 +10,12 @@
         public string TallerSolicitado { get; set; }
         public string EstatusSolicitud { get; set; }
         public DateTime FechaSolicitud { get; set; }
+        public string TallerSolicita { get; set; }
+        public double TSolicitadoLatitud { get; set; }
+        public double TSolicitadoLongitud { get; set; }
+        public double TSolicitaLatitud { get; set; }
+        public double TSolicitaLongitud { get; set; }
+        public int IdPieza { get; set; }
+        public bool IsVisibleBtn { get; set; }
     }
 }

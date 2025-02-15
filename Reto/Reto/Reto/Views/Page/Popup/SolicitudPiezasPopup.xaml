@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<toolkit:Popup
+<ContentPage
     x:Class="Reto.Views.Page.Popup.SolicitudPiezasPopup"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-    Closed="Popup_Closed"
-    HorizontalOptions="Fill"
-    Size="400,400"
-    VerticalOptions="Fill">
+    xmlns:convert="clr-namespace:Reto.Converts"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <convert:TextToColorConverter x:Key="colorConvert" />
+    </ContentPage.Resources>
     <VerticalStackLayout Padding="0,20" BackgroundColor="{DynamicResource ColorWhite}">
         <CollectionView
             ItemSizingStrategy="MeasureAllItems"
@@ -34,7 +34,7 @@
                             <Grid
                                 BackgroundColor="{DynamicResource ColorWhite}"
                                 ColumnSpacing="20"
-                                RowDefinitions="Auto,Auto,Auto,Auto">
+                                RowDefinitions="Auto,Auto,Auto,Auto,Auto">
                                 <Label
                                     Grid.Row="0"
                                     FontFamily="RobotoBlack"
@@ -51,7 +51,7 @@
                                     Grid.Row="2"
                                     FontFamily="RobotoRegular"
                                     FontSize="16"
-                                    Text="{Binding TallerSolicitado, StringFormat='Pieza: {0}'}"
+                                    Text="{Binding TallerSolicitado, StringFormat='Taller: {0}'}"
                                     TextColor="Black" />
                                 <Label
                                     Grid.Row="3"
@@ -59,6 +59,17 @@
                                     FontSize="16"
                                     Text="{Binding Mecanico, StringFormat='Mecanico: {0}'}"
                                     TextColor="Black" />
+                                <Label
+                                    Grid.Row="4"
+                                    Padding="10,5"
+                                    BackgroundColor="{Binding EstatusSolicitud, Converter={StaticResource colorConvert}}"
+                                    FontFamily="RobotoRegular"
+                                    FontSize="16"
+                                    HorizontalOptions="Start"
+                                    HorizontalTextAlignment="Start"
+                                    Text="{Binding EstatusSolicitud, StringFormat='{0}'}"
+                                    TextColor="{DynamicResource ColorWhite}"
+                                    VerticalOptions="Center" />
                             </Grid>
                         </VerticalStackLayout>
                     </Border>
@@ -66,5 +77,4 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
     </VerticalStackLayout>
-
-</toolkit:Popup>
+</ContentPage>

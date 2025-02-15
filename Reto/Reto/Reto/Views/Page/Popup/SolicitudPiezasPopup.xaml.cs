@@ -1,10 +1,9 @@
-using CommunityToolkit.Maui.Views;
 using Reto.Models;
 using System.Collections.ObjectModel;
 
 namespace Reto.Views.Page.Popup;
 
-public partial class SolicitudPiezasPopup : CommunityToolkit.Maui.Views.Popup
+public partial class SolicitudPiezasPopup : ContentPage
 {
     public event EventHandler<SolicitudPiezaModel> SelectionChanged;
     public ObservableCollection<SolicitudPiezaModel> SolicitudPiezas { get; set; }
@@ -25,7 +24,7 @@ public partial class SolicitudPiezasPopup : CommunityToolkit.Maui.Views.Popup
                 if(item != null)
                 {
                     SelectionChanged?.Invoke(this, item);
-                    CloseAsync();
+                    Navigation.RemovePage(this);
                 }
                 ((CollectionView)sender).SelectedItem = null;
             }
@@ -36,8 +35,9 @@ public partial class SolicitudPiezasPopup : CommunityToolkit.Maui.Views.Popup
         }
     }
 
-    private void Popup_Closed(object sender, CommunityToolkit.Maui.Core.PopupClosedEventArgs e)
+    protected override bool OnBackButtonPressed()
     {
         SelectionChanged?.Invoke(this, null);
+        return false;
     }
 }

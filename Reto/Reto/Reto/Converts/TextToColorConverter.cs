@@ -9,25 +9,25 @@
                 switch (text)
                 {
                     case "Pendiente":
-                        return Color.Parse("#ff0000");
+                        return Color.Parse("#ff0000");//
                     case "Rechazado":
-                        return Color.Parse("#ffff00");
+                        return Color.Parse("#a18262");//
                     case "Aceptado":
-                        return Color.Parse("#00913f");
+                        return Color.Parse("#00913f");//
                     case "Enviado":
-                        return Color.Parse("#0000ff");
+                        return Color.Parse("#0000ff");//
                     case "Recibido":
                         return Color.Parse("#FFA500");
                     default:
-                        return Color.Parse("#FFFFFF"); // color por defecto si no coincide
+                        return Color.Parse("#FFFFFF");
                 }
             }
-            return Color.Parse("#FFFFFF"); // color por defecto
+            return Color.Parse("#FFFFFF");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            return null; // No es necesario en este caso
+            return null; 
         }
     }
 }
